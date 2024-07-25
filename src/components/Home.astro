@@ -1,21 +1,60 @@
 ---
 interface Props {
-	hrefImg: string;
-	altImg: string;
+  hrefImg: string;
+  altImg: string;
 }
 
 const { hrefImg, altImg } = Astro.props;
-
 ---
 
 <section id="Home">
-    <div class="grid place-items-center mt-10 mb-3 hover:scale-[1.1] transition ease-in delay-100 duration-[0.40s] pb-5">
-        <img class="w-6/12" src={hrefImg} alt={altImg}>
+  <div class="grid place-items-center mt-10 mb-3 hover:scale-[1.1] transition ease-in delay-100 duration-[0.40s] pb-5">
+    <img class="w-6/12" src={hrefImg} alt={altImg} />
+  </div>
+  <div class="text-center text-slate-100">
+    <h1 class="text-4xl font-bold pb-2">Hello, this is Shop Online</h1>
+    <div class="grid place-items-center">
+      <p class="text-slate-200 opacity-[0.6] lg:w-[800px] md:w-[600px] p-2 sm:w-full">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum tempore
+        totam, fugiat necessitatibus quaerat recusandae sunt eveniet error
+        doloribus praesentium suscipit nihil quas ad tempora rem libero sint
+        distinctio sed.
+      </p>
     </div>
-    <div class="text-center text-slate-100">
-        <h1 class="text-4xl font-bold pb-2">Hello, this is Shop Online</h1>
-        <div class="grid place-items-center">
-            <p class="text-slate-200 opacity-[0.6] lg:w-[800px] md:w-[600px] p-2 sm:w-full">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum tempore totam, fugiat necessitatibus quaerat recusandae sunt eveniet error doloribus praesentium suscipit nihil quas ad tempora rem libero sint distinctio sed.</p>
-        </div>
-    </div>
+    <button class="mt-48" type="button" id="btnScroll">
+        <span class="icon-[icon-park-outline--down] bg-btn-bg w-10 h-10 transition-opacity duration-50 ease-in-out hover:animate-bounce" role="img" aria-hidden="true"></span>
+    </button>
+  </div>
 </section>
+
+<style>
+  .hidden {
+    display: none;
+  }
+</style>
+
+<script type="module">
+    document.addEventListener("DOMContentLoaded", () => {
+        const btnScroll = document.getElementById("btnScroll");
+        const lastSection = document.getElementById("Contact");
+
+        const handleScroll = () => {
+            const scrollPosition = window.scrollY + window.innerHeight;
+            const lastSectionPosition = lastSection.offsetTop;
+
+            if (scrollPosition >= lastSectionPosition) {
+                btnScroll.classList.add("hidden");
+            } else {
+                btnScroll.classList.remove("hidden");
+            }
+        };
+
+        const scrollToSection = () => {
+            lastSection.scrollIntoView({ behavior: "smooth" });
+        };
+
+        btnScroll.addEventListener("click", scrollToSection);
+        window.addEventListener("scroll", handleScroll);
+        handleScroll(); // Inicializa el estado del botón al cargar la página
+    });
+</script>
