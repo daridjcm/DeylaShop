@@ -13,7 +13,7 @@ export default {
 				'radial-gradient': 'radial-gradient(var(--tw-gradient-stops))',
 			},
 			animation: {
-				bounce: 'bounce 0.6s ease infinite',
+				bounce: 'bounce 0.9s ease infinite',
 			  },
 			  keyframes: {
 				bounce: {
