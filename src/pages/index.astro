@@ -1,5 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { ProductList } from '../components/ProductList';
+import Contact from '../layouts/Contact.astro';
 ---
 
 <!DOCTYPE html>
@@ -14,11 +16,11 @@ import Layout from '../layouts/Layout.astro';
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     </head>
-    
-    <body class="bg-[#090909] overflow-hiddens">
-        
-        <Layout />
-        
-    </body>
 
+    <body class="bg-[#090909]">
+        <Layout />
+        <ProductList client:only />
+        <!-- <Contact /> -->
+    </body>
+    
 </html>

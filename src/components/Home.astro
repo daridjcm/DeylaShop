@@ -1,21 +1,31 @@
 ---
 interface Props {
-	hrefImg: string;
-	altImg: string;
+  hrefImg: string;
+  altImg: string;
 }
 
 const { hrefImg, altImg } = Astro.props;
-
 ---
 
-<section id="Home">
-    <div class="grid place-items-center mt-10 mb-3 hover:scale-[1.1] transition ease-in delay-100 duration-[0.40s] pb-5">
-        <img class="w-6/12" src={hrefImg} alt={altImg}>
+<section class="mb-28 mt-36" id="Home">
+  <div class="grid place-items-center mt-10 mb-3 hover:scale-[1.1] transition ease-in delay-100 duration-[0.40s]">
+    <img class="w-6/12 cursor-pointer" src={hrefImg} alt={altImg} />
+  </div>
+  <div class="text-center text-slate-100">
+    <h1 class="text-4xl font-bold pb-2">Hello, this is Shop Online</h1>
+    <div class="grid place-items-center">
+      <p class="text-slate-200 opacity-[0.6] lg:w-[800px] md:w-[600px] p-2 sm:w-full">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum tempore
+        totam, fugiat necessitatibus quaerat recusandae sunt eveniet error
+        doloribus praesentium suscipit nihil quas ad tempora rem libero sint
+        distinctio sed.
+      </p>
     </div>
-    <div class="text-center text-slate-100">
-        <h1 class="text-4xl font-bold pb-2">Hello, this is Shop Online</h1>
-        <div class="grid place-items-center">
-            <p class="text-slate-200 opacity-[0.6] lg:w-[800px] md:w-[600px] p-2 sm:w-full">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum tempore totam, fugiat necessitatibus quaerat recusandae sunt eveniet error doloribus praesentium suscipit nihil quas ad tempora rem libero sint distinctio sed.</p>
-        </div>
+    <div class="flex flex-col items-center text-end lg:pt-20 sm: pt-32">
+      <button class="" type="button" id="btnScroll">
+          <span class="icon-[icon-park-outline--down] bg-btn-bg w-10 h-10 transition-opacity duration-75 ease-in-out hover:animate-bounce" role="img" aria-hidden="true"></span>
+      </button>
+
     </div>
+  </div>
 </section>
