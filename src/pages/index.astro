@@ -1,6 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import ProductList from '../components/ProductList';
+import { ProductList } from '../components/ProductList';
 import Contact from '../layouts/Contact.astro';
 ---
 
@@ -19,7 +19,7 @@ import Contact from '../layouts/Contact.astro';
 
     <body class="bg-[#090909]">
         <Layout />
-        <ProductList />
+        <ProductList client:only />
         <!-- <Contact /> -->
     </body>
     
