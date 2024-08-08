@@ -29,35 +29,3 @@ const { hrefImg, altImg } = Astro.props;
     </div>
   </div>
 </section>
-
-<style>
-  .hidden {
-    display: none;
-  }
-</style>
-
-<script type="module">
-    document.addEventListener("DOMContentLoaded", () => {
-        const btnScroll = document.getElementById("btnScroll");
-        const lastSection = document.getElementById("Contact");
-
-        const handleScroll = () => {
-            const scrollPosition = window.scrollY + window.innerHeight;
-            const lastSectionPosition = lastSection.offsetTop;
-
-            if (scrollPosition >= lastSectionPosition) {
-                btnScroll.classList.add("hidden");
-            } else {
-                btnScroll.classList.remove("hidden");
-            }
-        };
-
-        const scrollToSection = () => {
-            lastSection.scrollIntoView({ behavior: "smooth" });
-        };
-
-        btnScroll.addEventListener("click", scrollToSection);
-        window.addEventListener("scroll", handleScroll);
-        handleScroll(); // Inicializa el estado del botón al cargar la página
-    });
-</script>

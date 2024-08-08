@@ -1,6 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Products from '../layouts/Products.astro';
+import ProductList from '../components/ProductList';
 import Contact from '../layouts/Contact.astro';
 ---
 
@@ -16,13 +16,11 @@ import Contact from '../layouts/Contact.astro';
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     </head>
-    
-    <body class="bg-[#090909] overflow-hidden">
-        
-        <Layout />
-        <!-- <Products /> -->
-        <!-- <Contact /> -->
-        
-    </body>
 
+    <body class="bg-[#090909]">
+        <Layout />
+        <ProductList />
+        <!-- <Contact /> -->
+    </body>
+    
 </html>
