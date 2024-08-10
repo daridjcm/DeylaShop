@@ -15,7 +15,6 @@ export function ProductList() {
           throw new Error(`Network response was not ok: ${res.statusText}`);
         }
         const data = await res.json();
-        console.log('API Data:', data);
         const productData = data.products.map((product) => ({
           srcImg: product.thumbnail,
           altImg: product.title,
