@@ -15,7 +15,6 @@ export function ProductList() {
           throw new Error(`Network response was not ok: ${res.statusText}`);
         }
         const data = await res.json();
-        console.log('API Data:', data);
         const productData = data.products.map((product) => ({
           srcImg: product.thumbnail,
           altImg: product.title,
@@ -69,7 +68,7 @@ export function ProductList() {
         {products.map((product) => (
           <div
             key={product.idImg}
-            className="flex flex-col bg-[#0c0c0c] sm:w-1/2 md:w-1/3 lg:w-1/4 m-auto p-4 rounded-lg max-w-xs max-h-[400px]"
+            className="flex flex-col bg-[#0c0c0c] sm:w-1/2 md:w-1/3 lg:w-1/4 m-auto p-4 rounded-lg max-w-xs max-h-[400px] shadow-md cursor-pointer hover:scale-105 transition-transform"
           >
             <div className="flex justify-center">
               <img
@@ -86,10 +85,13 @@ export function ProductList() {
                 </p>
                 <p className="text-green-500 font-bold">${product.price}</p>
                 <p
-                  className="text-slate-200 font-semibold opacity-80 cursor-pointer truncate"
+                  className="text-slate-200 font-semibold opacity-60 cursor-pointer truncate hover:opacity-100 transition-opacity"
                   onClick={() => handleOpenModal(product)}
                 >
                   {product.description}
+                </p>
+                <p className='bg-slate-50 w-fit rounded-lg px-2 text-purple-400 font-bold'>
+                  {product.category}
                 </p>
               </div>
               <button
@@ -116,14 +118,14 @@ export function ProductList() {
               {selectedProduct.name}
             </h2>
             <p className="mb-4">{selectedProduct.description}</p>
-            <div id='otherInfo'>
-              <li className="mr-3 text-yellow-300">Rate: {selectedProduct.rate}</li>
-              <li className="mr-3 text-blue-300">Reference: {selectedProduct.reference}</li>
-              <li className={`mr-3 ${selectedProduct?.availabilityStatus == 'In Stock' ? 'text-red-500' : 'text-cyan-300'}`}>
-                Availability: {selectedProduct.availabilityStatus} ({selectedProduct.stock})
+            <div className='list-none' id='otherInfo'>
+              <li className="mr-3 text-yellow-300"><span className="icon-[material-symbols--star-half-outline] text-xl" />Rate: {selectedProduct.rate}</li>
+              <li className="mr-3 text-blue-300"><span class="icon-[material-symbols-light--barcode] text-xl" /> Reference: {selectedProduct.reference}</li>
+              <li className={`mr-3 ${selectedProduct?.availabilityStatus == 'In Stock' ? 'text-gray-500' : 'text-cyan-300'}`}>
+              <span class="icon-[material-symbols--check-circle-rounded] text-xl" /> Availability: {selectedProduct.availabilityStatus} ({selectedProduct.stock})
               </li>
-              <li className="mr-3 text-gray-300">Weight: {selectedProduct.weight}</li>
-              <li className="mr-3 text-pink-500">{selectedProduct.warranty}</li>
+              <li className="mr-3 text-gray-300"><span class="icon-[hugeicons--weight-scale-01] text-xl" /> Weight: {selectedProduct.weight}</li>
+              <li className="mr-3 text-pink-500"><span class="icon-[material-symbols--google-guarantee] text-xl" /> {selectedProduct.warranty}</li>
             </div>
           </div>
         </div>

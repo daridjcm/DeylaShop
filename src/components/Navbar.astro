@@ -3,6 +3,7 @@ interface Props {
   href1: string;
   href2: string;
   href3: string;
+  href4: string;
   hrefImg: string;
   altImg: string;
   title1: string;
@@ -10,7 +11,7 @@ interface Props {
   title3: string;
 }
 
-const { href1, href2, href3, hrefImg, altImg, title1, title2, title3 } = Astro.props;
+const { href1, href2, href3, href4, hrefImg, altImg, title1, title2, title3 } = Astro.props;
 ---
 
 <nav class="flex flex-col md:flex-row md:justify-between bg-[#080808] text-slate-50 pt-5 pb-5">
@@ -28,9 +29,11 @@ const { href1, href2, href3, hrefImg, altImg, title1, title2, title3 } = Astro.p
       <li>
         <a href={href3} class="text-white hover:text-[#ce83ec]">{title3}</a>
       </li>
-      <li>
-        <span class="icon-[solar--cart-large-2-broken]   text-2xl cursor-pointer" role="img" aria-hidden="true" id="cart"/>
-      </li>
+      <a href={href4}>  
+        <li class="bg-zinc-900 hover:bg-zinc-800 p-2 w-fit rounded-xl">
+          <span class="icon-[solar--cart-large-2-broken] hover:text-purple-300 text-4xl cursor-pointer" role="img" aria-hidden="true" id="cart"/>
+        </li>
+      </a>
     </ul>
   </div>
 </nav>
