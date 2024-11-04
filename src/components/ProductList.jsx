@@ -90,6 +90,9 @@ export function ProductList() {
                 >
                   {product.description}
                 </p>
+                <p className='bg-slate-50 w-fit rounded-lg px-2 text-purple-400 font-bold'>
+                  {product.category}
+                </p>
               </div>
               <button
                 className="bg-purple-400 text-purple-700 w-fit py-1 px-2 rounded-2xl hover:bg-purple-500 transition-all mt-4"
