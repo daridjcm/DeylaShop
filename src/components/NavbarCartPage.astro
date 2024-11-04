@@ -1,0 +1,23 @@
+---
+interface Props {
+  hrefIndex: string;
+  hrefImg: string;
+  altImg: string;
+}
+
+const { hrefIndex, hrefImg, altImg } = Astro.props;
+---
+
+<nav class="flex flex-col md:flex-row md:justify-between bg-[#080808] text-slate-50 pt-5 pb-5">
+  <div class="hidden md:flex md:items-center">
+    <img class="lg:w-[100px] ml-5 pr-2" src={hrefImg} alt={altImg} />
+  </div>
+  <div class="flex flex-row items-center justify-center font-sans text-[20px] font-semibold mr-5 ml-5">
+    <ul class="flex flex-row gap-4 content-between">
+      <li>
+        <a href={hrefIndex} class="text-white hover:text-[#ce83ec]">Regresar</a>
+      </li>
+      <li>
+    </ul>
+  </div>
+</nav>
