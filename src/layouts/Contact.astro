@@ -1,5 +1,47 @@
-<section id="Contact">
+<section id="Contact" class="mt-20">
     <div class="text-center text-slate-100">
-        <h2 class="text-4xl font-bold pb-2">Contact</h2>
+        <h2 class="text-4xl font-bold pb-4">Contact</h2>
+        <form class="w-[600px] m-auto">
+            <div class="flex flex-col gap-6 md:flex-row md:flex-wrap">
+                <!-- Name -->
+                <div class="min-w-full md:w-1/2 px-2">
+                    <label for="name" class="block mb-2 text-start text-slate-100">Name
+                        <span class="text-red-500">*</span>
+                    </label>
+                    <input type="text" id="name" name="name" placeholder="Your Name"
+                        class="min-w-full p-3 text-gray-800 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-100" />
+                </div>
+                <!-- Email -->
+                <div class="min-w-full md:w-1/2 px-2">
+                    <label for="email" class="block mb-2 text-start text-slate-100">Email
+                        <span class="text-red-500">*</span>
+                    </label>
+                    <input type="email" id="email" name="email" placeholder="Your Email"
+                        class="min-w-full p-3 text-gray-800 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-100" />
+                </div>
+                <!-- Telephone -->
+                <div class="min-w-full md:w-1/2 px-2">
+                    <label for="tel" class="block mb-2 text-start text-slate-100">Telephone
+                        <span class="text-red-500">*</span>
+                    </label>
+                    <input type="text" id="tel" name="tel" placeholder="Your Telephone"
+                        class="min-w-full p-3 text-gray-800 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-100" />
+                </div>
+                <!-- Message -->
+                <div class="min-w-full px-2">
+                    <label for="mssg" class="block mb-2 text-start text-slate-100">Message
+                        <span class="text-red-500">*</span>
+                    </label>
+                    <textarea id="mssg" name="mssg" placeholder="Your Message"
+                        class="min-w-full h-32 p-3 text-gray-800 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-100"></textarea>
+                </div>
+            </div>
+            <div class="text-center mt-6">
+                <button type="submit"
+                    class="px-6 py-3 bg-purple-600 text-white font-bold rounded-lg hover:bg-purple-700 transition-all duration-300">
+                    Submit
+                </button>
+            </div>
+        </form>
     </div>
 </section>
