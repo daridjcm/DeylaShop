@@ -1,5 +1,26 @@
 import React, { useState, useEffect } from 'react';
 
+const STORAGE_KEY = 'deylaCart';
+
+const getCartFromStorage = () => {
+  if (typeof window === 'undefined') return [];
+  try {
+    const stored = window.localStorage.getItem(STORAGE_KEY);
+    return stored ? JSON.parse(stored) : [];
+  } catch {
+    return [];
+  }
+};
+
+const saveCartToStorage = (cart) => {
+  if (typeof window === 'undefined') return;
+  window.localStorage.setItem(STORAGE_KEY, JSON.stringify(cart));
+};
+
+const getCartQuantity = (cart) => {
+  return cart.reduce((sum, item) => sum + (item.quantity || 0), 0);
+}
+
 export function ProductList() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -50,6 +71,45 @@ export function ProductList() {
     setSelectedProduct(null);
   };
 
+  const [sortOrder, setSortOrder] = useState('');
+
+  useEffect(() => {
+    let sortedProducts = [...products];
+    if (sortOrder === 'price-asc') {
+      sortedProducts.sort((a, b) => a.price - b.price);
+    } else if (sortOrder === 'price-desc') {
+      sortedProducts.sort((a, b) => b.price - a.price);
+    } else if (sortOrder === 'rating-desc') {
+      sortedProducts.sort((a, b) => b.rate - a.rate);
+    }
+    setProducts(sortedProducts);
+  }, [sortOrder]);
+
+  const addCart = (product) => {
+    console.log('Adding to cart:', product);
+    const cart = getCartFromStorage();
+    const existing = cart.find((item) => item.id === product.idImg);
+
+    if (existing) {
+      existing.quantity += 1;
+    } else {
+      cart.push({
+        id: product.idImg,
+        name: product.name,
+        price: product.price,
+        srcImg: product.srcImg,
+        altImg: product.altImg,
+        quantity: 1,
+      });
+    }
+
+    saveCartToStorage(cart);
+    const quantity = getCartQuantity(cart);
+    window.dispatchEvent(new CustomEvent('cartUpdated', {
+      detail: { quantity },
+    }));
+  };
+
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -62,15 +122,26 @@ export function ProductList() {
     return <p>No products found</p>;
   }
 
+
   return (
     <section id='Products'>
+      {/* Filter products */ }
+      <div className="flex justify-start m-5 text-purple-700">
+        <p className="m-2">Sort by:</p>
+        <select className="border border-purple-500 bg-purple-300 rounded-lg px-4 py-2" value={sortOrder} onChange={(e) => setSortOrder(e.target.value)}>
+          <option value="">Default</option>
+          <option value="price-asc">Price: Low to High</option>
+          <option value="price-desc">Price: High to Low</option>
+          <option value="rating-desc">Rating: High to Low</option>
+        </select>
+      </div>
       <div className="flex flex-wrap content-center items-center gap-y-20 gap-x-3">
         {products.map((product) => (
           <div
             key={product.idImg}
             className="flex flex-col bg-[#0c0c0c] sm:w-1/2 md:w-1/3 lg:w-1/4 m-auto p-4 rounded-lg max-w-xs max-h-[400px] shadow-md cursor-pointer hover:scale-105 transition-transform"
           >
-            <div className="flex justify-center">
+            <div className="flex justify-center" onClick={() => handleOpenModal(product)}>
               <img
                 className="w-40 h-40 object-cover"
                 src={product.srcImg}
@@ -85,8 +156,7 @@ export function ProductList() {
                 </p>
                 <p className="text-green-500 font-bold">${product.price}</p>
                 <p
-                  className="text-slate-200 font-semibold opacity-60 cursor-pointer truncate hover:opacity-100 transition-opacity"
-                  onClick={() => handleOpenModal(product)}
+                  className="text-slate-200 font-semibold opacity-60 cursor-pointer truncate hover:opacity-100 transition-opacity" onClick={() => handleOpenModal(product)}
                 >
                   {product.description}
                 </p>
@@ -97,6 +167,7 @@ export function ProductList() {
               <button
                 className="bg-purple-400 text-purple-700 w-fit py-1 px-2 rounded-2xl hover:bg-purple-500 transition-all mt-4"
                 type="button"
+                onClick={() => addCart(product)}
               >
                 <span className="icon-[solar--cart-large-2-broken] text-slate-100 mr-1" role="img" aria-hidden="true" /> Add to cart
               </button>
@@ -131,6 +202,5 @@ export function ProductList() {
         </div>
       )}
     </section>
-
   );
 }

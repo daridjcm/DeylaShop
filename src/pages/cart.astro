@@ -1,0 +1,12 @@
+---
+import NavbarCartPage from "../components/NavbarCartPage.astro";
+import { CartPage } from "../components/CartPage.jsx";
+---
+
+<NavbarCartPage
+  hrefIndex="/"
+  hrefImg="/Deyla.svg"
+  altImg="Deyla Logo"
+/>
+
+<CartPage client:load />
