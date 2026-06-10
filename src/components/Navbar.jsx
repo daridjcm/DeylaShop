@@ -45,7 +45,7 @@ export function Navbar({ href1, href2, href3, href4, hrefImg, altImg, title1, ti
           <li>
             <a href={href3} className="text-white hover:text-[#ce83ec]">{title3}</a>
           </li>
-          <li className="bg-zinc-900 hover:bg-zinc-800 p-2 w-fit rounded-xl relative">
+          <li className="w-fit rounded-xl relative">
             <a href={href4}>
               <span className="icon-[solar--cart-large-2-broken] hover:text-purple-300 text-4xl cursor-pointer" role="img" aria-hidden="true" id="cart"/>
             </a>

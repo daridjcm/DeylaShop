@@ -26,8 +26,9 @@ export function ProductList() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [selectedProduct, setSelectedProduct] = useState(null);
+  const [sortOrder, setSortOrder] = useState('');
 
-  useEffect(() => {
+  useEffect(() => {  
     const fetchProducts = async () => {
       try {
         console.log('Fetching products...');
@@ -62,16 +63,7 @@ export function ProductList() {
 
     fetchProducts();
   }, []);
-
-  const handleOpenModal = (product) => {
-    setSelectedProduct(product);
-  };
-
-  const handleCloseModal = () => {
-    setSelectedProduct(null);
-  };
-
-  const [sortOrder, setSortOrder] = useState('');
+  
 
   useEffect(() => {
     let sortedProducts = [...products];
@@ -84,6 +76,14 @@ export function ProductList() {
     }
     setProducts(sortedProducts);
   }, [sortOrder]);
+
+  const handleOpenModal = (product) => {
+    setSelectedProduct(product);
+  };
+
+  const handleCloseModal = () => {
+    setSelectedProduct(null);
+  };
 
   const addCart = (product) => {
     console.log('Adding to cart:', product);
@@ -135,11 +135,12 @@ export function ProductList() {
           <option value="rating-desc">Rating: High to Low</option>
         </select>
       </div>
+      {/* Products */}
       <div className="flex flex-wrap content-center items-center gap-y-20 gap-x-3">
         {products.map((product) => (
           <div
             key={product.idImg}
-            className="flex flex-col bg-[#0c0c0c] sm:w-1/2 md:w-1/3 lg:w-1/4 m-auto p-4 rounded-lg max-w-xs max-h-[400px] shadow-md cursor-pointer hover:scale-105 transition-transform"
+            className="flex flex-col bg-[#0c0c0c] sm:w-1/2 md:w-1/4 lg:w-1/6 m-auto p-4 rounded-lg max-w-full max-h-[600px] shadow-md cursor-pointer hover:scale-105 transition-transform"
           >
             <div className="flex justify-center" onClick={() => handleOpenModal(product)}>
               <img
@@ -175,6 +176,7 @@ export function ProductList() {
           </div>
         ))}
       </div>
+      {/* Details Product */}
       {selectedProduct && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-80 z-50">
           <div className="relative bg-[#131313] text-slate-100 p-4 rounded-lg max-w-md w-full h-fit">

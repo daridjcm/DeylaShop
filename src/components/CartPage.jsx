@@ -107,11 +107,11 @@ export function CartPage() {
                   </div>
                   <div className="text-right">
                     <button
-                      className="text-red-500 hover:text-red-700"
+                      className="text-xs underline text-red-500 hover:text-red-700"
                       onClick={() => handleRemove(item.id)}
                       aria-label="Remove product"
                     >
-                      &times;
+                      Remove
                     </button>
                   </div>
                 </div>
